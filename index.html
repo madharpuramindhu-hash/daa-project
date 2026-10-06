@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSP Visualizer – DAA Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Travelling Salesman Problem Visualizer</h1>
+  <p>Visit every city exactly once and return to the start by the shortest route. Add cities, pick an algorithm, and watch it think.</p>
+</header>
+
+<main>
+  <section class="stage">
+    <canvas id="map" width="800" height="520"></canvas>
+    <p id="status" class="status">Click the map to add cities. Drag a city to move it.</p>
+  </section>
+
+  <aside>
+    <div class="box">
+      <h2>Controls</h2>
+      <label>Algorithm
+        <select id="algo">
+          <option value="brute">Brute force</option>
+          <option value="nn">Nearest neighbour (greedy)</option>
+          <option value="opt">2-opt improvement</option>
+          <option value="dp">Held-Karp (dynamic programming)</option>
+        </select>
+      </label>
+      <label>Speed <input type="range" id="speed" min="1" max="7" value="4"></label>
+      <div class="row">
+        <input type="number" id="count" min="3" max="30" value="8" aria-label="Number of random cities">
+        <button id="random">Add random cities</button>
+      </div>
+      <div class="row">
+        <button id="run" class="primary">Run</button>
+        <button id="stop">Stop</button>
+        <button id="clear">Clear</button>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>Live numbers</h2>
+      <dl class="stats">
+        <div><dt>Cities</dt><dd id="sCities">0</dd></div>
+        <div><dt>Steps</dt><dd id="sSteps">0</dd></div>
+        <div><dt>Current tour</dt><dd id="sCur">–</dd></div>
+        <div><dt>Best tour</dt><dd id="sBest">–</dd></div>
+      </dl>
+      <p id="note" class="note">Waiting to start.</p>
+    </div>
+
+    <div class="box">
+      <h2 id="aName">How it works</h2>
+      <p id="aText"></p>
+      <p><b>Time:</b> <span id="aTime"></span> &nbsp; <b>Space:</b> <span id="aSpace"></span></p>
+      <p id="aOps" class="note"></p>
+    </div>
+  </aside>
+</main>
+
+<section class="legend">
+  <span><i class="dot best"></i> Best tour so far</span>
+  <span><i class="dot cur"></i> Route being tried</span>
+  <span><i class="dot hi"></i> Cities in the current subset (DP)</span>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
